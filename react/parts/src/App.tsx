@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
-  height: 100px;
+  height: 200px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,6 +12,7 @@ const Wrapper = styled.div`
 `;
 
 const InputArea = styled.div`
+  margin-bottom: 7px;
   border-radius: 5px;
   border: solid 1px #333;
 `;
@@ -24,22 +25,32 @@ const Input = styled.input`
 `;
 
 const Output = styled.p`
-  font-size: 21px;
+  height: 30px;
+  margin: 0;
+  padding: 10px 0;
+  font-size: 23px;
 `;
 
 const App = () => {
   const [value, setValue] = useState('');
+  const [display, setDisplay] = useState('');
 
   const onChangeValue = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
   };
 
+  const pressEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key !== 'Enter') return;
+    setDisplay(value);
+  };
+
   return (
     <Wrapper>
       <InputArea>
-        <Input type='text' value={value} onChange={onChangeValue} />
+        <Input type='text' value={value} onChange={onChangeValue} onKeyPress={pressEnter} />
       </InputArea>
       <Output>{value}</Output>
+      <Output>{display}</Output>
     </Wrapper>
   );
 };

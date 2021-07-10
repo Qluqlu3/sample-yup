@@ -9,7 +9,7 @@ import reportWebVitals from './reportWebVitals';
 const Wrapper = styled.div`
   width: 100vw;
   height: 100vh;
-  background-color: #aaa;
+  background-color: #ddd;
 `;
 
 ReactDOM.render(
