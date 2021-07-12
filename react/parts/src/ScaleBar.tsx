@@ -27,7 +27,7 @@ const ScaleInner = styled.div`
 
 const ScaleFill = styled.div<{ width: number }>`
   position: absolute;
-  width: ${(props) => props.width}px;
+  width: ${({ width }) => width}px;
   height: 4px;
   border-radius: 2px;
   background: #f00;
@@ -40,7 +40,7 @@ const Circle = styled.div<{ position: number; disabled?: boolean }>`
   height: 15px;
   transform: ${(props) => `translateX(${props.position - 10}px) `};
   border-radius: 50%;
-  cursor: ${(props) => (props.disabled ? 'default' : 'pointer')};
+  cursor: ${({ disabled }) => (disabled ? 'default' : 'pointer')};
   &::after {
     content: '';
     position: absolute;
@@ -50,7 +50,7 @@ const Circle = styled.div<{ position: number; disabled?: boolean }>`
     background: #fff;
     width: 14px;
     height: 14px;
-    border: 2px solid ${(props) => (props.disabled ? '#000' : '#00F')};
+    border: 2px solid ${({ disabled }) => (disabled ? '#000' : '#00F')};
     border-radius: 10px;
   }
   &:hover::after {
@@ -67,8 +67,7 @@ type Props = {
   onMouseUp?: (value: number) => void;
 };
 
-export const ScaleBar: React.FC<Props> = React.memo((props) => {
-  const { disabled, value, maxValue, minValue, onChange, onMouseUp } = props;
+export const ScaleBar: React.FC<Props> = React.memo(({ disabled, value, maxValue, minValue, onChange, onMouseUp }) => {
   const [translate, setTranslate] = useState(0);
   const refScale = useRef<HTMLDivElement>(null);
   const valueOnMouseMove = useRef(value);
