@@ -2,10 +2,25 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import throttle from 'lodash.throttle';
 import styled from 'styled-components';
 
-const Wrapper = styled.div<{ disabled?: boolean }>`
-  padding-top: 30px;
-  padding-left: 30px;
-  flex-grow: 1;
+const Wrapper = styled.div`
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`;
+
+const ShownValue = styled.p`
+  font-size: 30px;
+  font-weight: bold;
+  color: #333;
+`;
+
+const ScaleBox = styled.div<{ disabled?: boolean }>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   opacity: ${({ disabled }) => disabled && 0.5};
 `;
 
@@ -22,7 +37,7 @@ const ScaleInner = styled.div`
   width: 200px;
   height: 4px;
   border-radius: 2px;
-  background: #06790c;
+  background: #55aa55;
 `;
 
 const ScaleFill = styled.div<{ width: number }>`
@@ -30,7 +45,7 @@ const ScaleFill = styled.div<{ width: number }>`
   width: ${({ width }) => width}px;
   height: 4px;
   border-radius: 2px;
-  background: #f00;
+  background: #156a15;
 `;
 
 const Circle = styled.div<{ position: number; disabled?: boolean }>`
@@ -38,7 +53,7 @@ const Circle = styled.div<{ position: number; disabled?: boolean }>`
   top: -7px;
   width: 15px;
   height: 15px;
-  transform: ${(props) => `translateX(${props.position - 10}px) `};
+  transform: ${({ position }) => `translateX(${position - 10}px) `};
   border-radius: 50%;
   cursor: ${({ disabled }) => (disabled ? 'default' : 'pointer')};
   &::after {
@@ -50,7 +65,7 @@ const Circle = styled.div<{ position: number; disabled?: boolean }>`
     background: #fff;
     width: 14px;
     height: 14px;
-    border: 2px solid ${({ disabled }) => (disabled ? '#000' : '#00F')};
+    border: 2px solid ${({ disabled }) => (disabled ? '#000' : '#0e470e')};
     border-radius: 10px;
   }
   &:hover::after {
@@ -71,6 +86,7 @@ export const ScaleBar: React.FC<Props> = React.memo(({ disabled, value, maxValue
   const [translate, setTranslate] = useState(0);
   const refScale = useRef<HTMLDivElement>(null);
   const valueOnMouseMove = useRef(value);
+  const [sliderValue, setSliderValue] = useState(value);
 
   useEffect(() => {
     if (!refScale.current) return;
@@ -91,6 +107,7 @@ export const ScaleBar: React.FC<Props> = React.memo(({ disabled, value, maxValue
         const newValue = Math.min(Math.max(value, minValue), maxValue);
         valueOnMouseMove.current = newValue;
         onChange(newValue);
+        setSliderValue(Math.round(newValue));
       }, 50),
     [maxValue, minValue, onChange]
   );
@@ -114,13 +131,16 @@ export const ScaleBar: React.FC<Props> = React.memo(({ disabled, value, maxValue
   };
 
   return (
-    <Wrapper disabled={disabled}>
-      <Scale ref={refScale} onClick={handleClick}>
-        <ScaleInner>
-          <ScaleFill width={translate} />
-          <Circle onMouseDown={handleMouseDown} position={translate} disabled={disabled} /> 
-        </ScaleInner>
-      </Scale>
+    <Wrapper>
+      <ShownValue>{sliderValue}</ShownValue>
+      <ScaleBox disabled={disabled}>
+        <Scale ref={refScale} onClick={handleClick}>
+          <ScaleInner>
+            <ScaleFill width={translate} />
+            <Circle onMouseDown={handleMouseDown} position={translate} disabled={disabled} /> 
+          </ScaleInner>
+        </Scale>
+      </ScaleBox>
     </Wrapper>
   );
 });
