@@ -35,19 +35,24 @@ export const TextField = React.memo(() => {
   const [value, setValue] = useState('');
   const [display, setDisplay] = useState('');
 
-  const onChangeValue = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const onChangeValue = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setValue(event.target.value);
   };
 
-  const pressEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
+  const pressEnter = (event: React.KeyboardEvent<HTMLInputElement>): void => {
     if (event.key !== 'Enter') return;
+    setDisplay(value);
+  };
+
+  const determineText = (): void => {
+    if (value === display) return;
     setDisplay(value);
   };
 
   return (
     <Wrapper>
       <InputArea>
-        <Input type='text' value={value} onChange={onChangeValue} onKeyPress={pressEnter} />
+        <Input type='text' value={value} onChange={onChangeValue} onKeyPress={pressEnter} onBlur={determineText} />
       </InputArea>
       <Output>{value}</Output>
       <Output>{display}</Output>

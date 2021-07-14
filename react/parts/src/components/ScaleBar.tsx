@@ -112,19 +112,19 @@ export const ScaleBar: React.FC<Props> = React.memo(({ disabled, value, maxValue
     [maxValue, minValue, onChange]
   );
 
-  const handleMouseUp = () => {
+  const handleMouseUp = (): void => {
     document.removeEventListener('mousemove', handleMouseMove);
     document.removeEventListener('mouseup', handleMouseUp);
     onMouseUp?.(valueOnMouseMove.current);
   };
 
-  const handleMouseDown = () => {
+  const handleMouseDown = (): void => {
     if (disabled) return;
     document.addEventListener('mousemove', handleMouseMove);
     document.addEventListener('mouseup', handleMouseUp);
   };
 
-  const handleClick: React.MouseEventHandler = (event) => {
+  const handleClick: React.MouseEventHandler = (event): void => {
     if (disabled) return;
     handleMouseMove(event.nativeEvent);
     setTimeout(() => onMouseUp?.(valueOnMouseMove.current), 0);

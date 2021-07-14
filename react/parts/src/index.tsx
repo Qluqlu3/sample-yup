@@ -1,11 +1,10 @@
-// import React from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 
 import './index.css';
-import { TextField } from './TextField';
+import { TextField } from './components/TextField';
+import { ScaleBar } from './components/ScaleBar';
 import reportWebVitals from './reportWebVitals';
-import { ScaleBar } from './ScaleBar';
 
 const Wrapper = styled.div`
   width: 100vw;
