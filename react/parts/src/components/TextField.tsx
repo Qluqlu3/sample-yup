@@ -31,7 +31,7 @@ const Output = styled.p`
   font-size: 23px;
 `;
 
-export const TextField = React.memo(() => {
+export const TextField: React.FC = React.memo(() => {
   const [value, setValue] = useState('');
   const [display, setDisplay] = useState('');
 

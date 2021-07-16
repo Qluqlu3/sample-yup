@@ -4,17 +4,10 @@ import styled from 'styled-components';
 
 const Wrapper = styled.div`
   width: 100%;
-  height: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-`;
-
-const ShownValue = styled.p`
-  font-size: 30px;
-  font-weight: bold;
-  color: #333;
 `;
 
 const ScaleBox = styled.div<{ disabled?: boolean }>`
@@ -86,7 +79,6 @@ export const ScaleBar: React.FC<Props> = React.memo(({ disabled, value, maxValue
   const [translate, setTranslate] = useState(0);
   const refScale = useRef<HTMLDivElement>(null);
   const valueOnMouseMove = useRef(value);
-  const [sliderValue, setSliderValue] = useState(value);
 
   useEffect(() => {
     if (!refScale.current) return;
@@ -107,7 +99,6 @@ export const ScaleBar: React.FC<Props> = React.memo(({ disabled, value, maxValue
         const newValue = Math.min(Math.max(value, minValue), maxValue);
         valueOnMouseMove.current = newValue;
         onChange(newValue);
-        setSliderValue(Math.round(newValue));
       }, 50),
     [maxValue, minValue, onChange]
   );
@@ -132,7 +123,6 @@ export const ScaleBar: React.FC<Props> = React.memo(({ disabled, value, maxValue
 
   return (
     <Wrapper>
-      <ShownValue>{sliderValue}</ShownValue>
       <ScaleBox disabled={disabled}>
         <Scale ref={refScale} onClick={handleClick}>
           <ScaleInner>
