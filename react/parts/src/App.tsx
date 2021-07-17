@@ -20,8 +20,9 @@ const ShownValue = styled.p`
   color: #333;
 `;
 
-export const App: React.FC = () => {
+export const App: React.FC = React.memo(() => {
   const [scaleValue, setScaleValue] = useState(0);
+  const [sendedScaleValue, setSendedScaleValue] = useState<number | null>(null);
 
   const onChangeScaleBar = useCallback(
     (newValue: number) => {
@@ -30,11 +31,16 @@ export const App: React.FC = () => {
     [scaleValue]
   );
 
+  const onMouseUpScaleBar = useCallback(() => {
+    setSendedScaleValue(scaleValue);
+  }, [scaleValue]);
+
   return (
     <Wrapper>
       <TextField />
       <ShownValue>{scaleValue}</ShownValue>
-      <ScaleBar maxValue={100} minValue={0} value={0} onChange={onChangeScaleBar} />
+      <ScaleBar maxValue={100} minValue={0} value={0} onChange={onChangeScaleBar} onMouseUp={onMouseUpScaleBar} />
+      <ShownValue>{sendedScaleValue}</ShownValue>
     </Wrapper>
   );
-};
+});
