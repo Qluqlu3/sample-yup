@@ -16,7 +16,10 @@ func main() {
 	app.GET("/gin", func(content *gin.Context) {
 		content.HTML(200, "index.html", gin.H{
 			"message": "こんにちは",
+			"name":    "お酒",
 		})
 	})
+	//画像表示
+	app.Static("/image", "./images")
 	app.Run(":5000")
 }
