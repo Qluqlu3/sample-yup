@@ -1,18 +1,33 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>sample</title>
-</head>
-<body style="background-color: #aaa;">
-	<h1>Go Gin</h1>
-	<h2>{{.message}}</h2>
-	<h2>{{.name}}</h2>
-	<form action="/post" method="post" >
-		<input type="text" name="name" />
-		<input type="submit" />
-	</form>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>sample</title>
+  </head>
+  <body style="background-color: #aaa">
+    <h1>Go Gin</h1>
+    <h2>{{.message}}</h2>
+    <h2>{{.name}}</h2>
+    <form action="/post" method="post">
+      <input type="text" name="name" />
+      <input type="submit" />
+    </form>
+    <hr />
+    <form action="/form" method="post">
+      <input type="text" name="text" />
+      <div>
+        <div>
+          <label for="male">男性</label>
+          <input type="radio" name="sex" value="male" id="male" />
+        </div>
+        <div>
+          <label for="female">女性</label>
+          <input type="radio" name="sex" value="female" id="female" />
+        </div>
+      </div>
+      <input type="submit" />
+    </form>
+  </body>
 </html>
