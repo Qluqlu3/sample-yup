@@ -34,7 +34,8 @@ func main() {
 		text := content.PostForm("text")
 		sex := content.PostForm("sex")
 		hobbies := content.PostFormArray("hobbies")
-		content.JSON(http.StatusOK, gin.H{"text": text, "sex": sex, "hobbies": hobbies})
+		age := content.PostForm("age")
+		content.JSON(http.StatusOK, gin.H{"text": text, "sex": sex, "hobbies": hobbies, "age": age})
 	})
 	app.Run(":5000")
 }
