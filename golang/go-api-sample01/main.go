@@ -33,7 +33,8 @@ func main() {
 	app.POST("/form", func(content *gin.Context) {
 		text := content.PostForm("text")
 		sex := content.PostForm("sex")
-		content.JSON(http.StatusOK, gin.H{"text": text, "sex": sex})
+		hobbies := content.PostFormArray("hobbies")
+		content.JSON(http.StatusOK, gin.H{"text": text, "sex": sex, "hobbies": hobbies})
 	})
 	app.Run(":5000")
 }
