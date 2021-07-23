@@ -16,12 +16,15 @@ func main() {
 	// htmlのディレクトリを指定
 	//HTML表示
 	app.LoadHTMLGlob("html/*")
+	list := []string{"大根", "にんじん", "きゅうり", "玉ねぎ"}
 	app.GET("/gin", func(content *gin.Context) {
 		content.HTML(http.StatusOK, "index.html", gin.H{
 			"message": "こんにちは",
 			"name":    "お酒",
+			"list":    list,
 		})
 	})
+
 	//画像表示
 	app.Static("/image", "./images")
 
