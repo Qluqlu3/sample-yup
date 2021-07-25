@@ -2,6 +2,7 @@ package main
 
 import (
 	"net/http"
+	"strings"
 
 	"github.com/gin-gonic/gin"
 )
@@ -39,6 +40,12 @@ func main() {
 		hobbies := content.PostFormArray("hobbies")
 		age := content.PostForm("age")
 		content.JSON(http.StatusOK, gin.H{"text": text, "sex": sex, "hobbies": hobbies, "age": age})
+	})
+
+	app.POST("/tag", func(content *gin.Context) {
+		tags := content.PostForm("tags")
+		slice := strings.Split(tags, " ")
+		content.JSON(http.StatusOK, gin.H{"tags": slice})
 	})
 	app.Run(":5000")
 }
