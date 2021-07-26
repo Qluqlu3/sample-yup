@@ -47,5 +47,11 @@ func main() {
 		slice := strings.Split(tags, " ")
 		content.JSON(http.StatusOK, gin.H{"tags": slice})
 	})
+
+	app.POST("/password", func(content *gin.Context) {
+		passsword := content.PostForm("passsword")
+		rePasssword := content.PostForm("re_passsword")
+		content.JSON(http.StatusOK, gin.H{"passsword": passsword, "re_passsword": rePasssword, "result": passsword == rePasssword})
+	})
 	app.Run(":5000")
 }
