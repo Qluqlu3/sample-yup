@@ -15,6 +15,13 @@ func TestGetHello(t *testing.T) {
 	ginContext.Request = req
 
 	asserts := assert.New(t)
-	asserts.Equal(gin.H{"message": "world"}, gin.H{"message": "world"})
-	// asserts.Equal("message", "world")
+	asserts.Equal(ginContext.Request.Method, "GET")
+}
+func TestPostPost(t *testing.T) {
+	ginContext, _ := gin.CreateTestContext(httptest.NewRecorder())
+	req, _ := http.NewRequest("POST", "/post", nil)
+	ginContext.Request = req
+
+	asserts := assert.New(t)
+	asserts.Equal(ginContext.PostForm("name"), "")
 }
