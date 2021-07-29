@@ -24,5 +24,4 @@ func TestPostPost(t *testing.T) {
 
 	asserts := assert.New(t)
 	asserts.Equal(ginContext.PostForm("name"), "")
-	asserts.Equal(ginContext.PostForm("name"), "OK")
 }

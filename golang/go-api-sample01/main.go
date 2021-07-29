@@ -44,8 +44,8 @@ func main() {
 
 	app.POST("/tag", func(content *gin.Context) {
 		tags := content.PostForm("tags")
-		slice := strings.Split(tags, " ")
-		content.JSON(http.StatusOK, gin.H{"tags": slice})
+		slice := strings.Split(tags, ",")
+		content.HTML(http.StatusOK, "tag.html", gin.H{"tags": slice})
 	})
 
 	app.POST("/password", func(content *gin.Context) {
