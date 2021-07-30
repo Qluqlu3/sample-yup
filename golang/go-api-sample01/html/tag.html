@@ -9,9 +9,9 @@
   <body style="background-color: #aaa">
     <h1>タグ</h1>
     <ul style="font-size: 23px">
-      {{range .tags}}
-      <li>{{.}}</li>
-      {{end}}
+      {{range $index, $tag := .tags}} {{if eq $index 1}}
+      <li>{{$tag}} {{ $index }}</li>
+      {{end}} {{end}}
     </ul>
   </body>
 </html>
