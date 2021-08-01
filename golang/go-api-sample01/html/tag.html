@@ -11,7 +11,27 @@
     <ul style="font-size: 23px">
       {{range $index, $tag := .tags}} {{if eq $index 1}}
       <li>{{$tag}} {{ $index }}</li>
-      {{end}} {{end}}
+			<!-- != -->
+      {{end}} {{if ne $index 1}}
+      <li>{{$tag}} {{ $index }}</li>
+			{{end}}
+			<!-- >= -->
+			{{if ge $index 2}}
+      <li>{{$tag}} {{ $index }}</li>
+			{{end}}
+			<!-- > -->
+			{{if ge $index 2}}
+      <li>{{$tag}} {{ $index }}</li>
+			{{end}}
+			<!-- <= -->
+			{{if ge $index 3}}
+      <li>{{$tag}} {{ $index }}</li>
+			{{end}}
+			<!-- < -->
+			{{if ge $index 3}}
+      <li>{{$tag}} {{ $index }}</li>
+			{{end}}
+			{{end}}
     </ul>
   </body>
 </html>
