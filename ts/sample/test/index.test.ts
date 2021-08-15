@@ -15,3 +15,10 @@ describe('FizzBuzz', () => {
     expect(sample.checkFizzBuzz(17)).toBe('');
   });
 });
+
+describe('split', () => {
+  test('split', () => {
+    const sample = new Sample('name');
+    expect(sample.splitComma('a,b,c,ddddd,ffffff,zzzzzz,x')).toEqual(['a', 'b', 'c', 'ddddd', 'ffffff', 'zzzzzz', 'x']);
+  });
+});
