@@ -1,14 +1,14 @@
 export class Sample {
-  private name: string;
+  private _name: string;
   // public price: number;
 
   constructor(name: string) {
-    this.name = name;
+    this._name = name;
     // this.price = price;
   }
 
   sendMessage() {
-    return this.name;
+    return this._name;
   }
 
   checkFizzBuzz(num: number): string {
@@ -22,3 +22,7 @@ export class Sample {
     return list.split(',');
   }
 }
+
+export const calcNum = (num1: number, num2: number): number => {
+  return num1 + num2;
+};
