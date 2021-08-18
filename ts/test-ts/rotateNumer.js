@@ -8,5 +8,4 @@ const rotateNumber = (value) => {
   } while (Number(result) !== Number(result.toString().split('').reverse().join('')));
 };
 
-
 console.log(rotateNumber(261));
