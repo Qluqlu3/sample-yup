@@ -7,3 +7,5 @@ const searchDislikeNumber = (value: number, target: string) => {
 };
 
 console.log(searchDislikeNumber(4, '12345'));
+
+console.log(searchDislikeNumber(4, '93210'));
